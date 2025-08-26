@@ -64,7 +64,7 @@ main_diagonal([M|Ms], I, [D|Ds]) :-
   main_diagonal(Ms, I1, Ds).
 
 
-%% all_same(List)
+%% all_same(+List)
 % 
 all_same([Head|Tail]) :-
   all_same(Head, Tail).
