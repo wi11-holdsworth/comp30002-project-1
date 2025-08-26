@@ -9,7 +9,7 @@
 %
 puzzle_solution(Puzzle) :-
   Puzzle = [_|Rows],
-  % unify_diagonal(Puzzle),
+  unify_diagonal(Puzzle),
   maplist(valid_row, Rows),
   transpose(Puzzle, TransposedPuzzle),
   TransposedPuzzle = [_|Columns],
@@ -60,7 +60,8 @@ main_diagonal([M|Ms], I, [D|Ds]) :-
 all_same([Head|Tail]) :-
   all_same(Head, Tail).
 
+all_same(X, [X]).
 all_same(Head, [X|Xs]) :-
-  Head = X,
+  Head #= X,
   all_same(Head, Xs).
    
