@@ -2,8 +2,6 @@
 % Three = [[0,14,10,35],[14,_,_,_],[15,_,_,_],[28,_,1,_]].
 
 :- use_module(library(clpfd)).
-:- use_module(library(apply)).
-
 
 %% puzzle_solution(+Puzzle)
 %
