@@ -18,10 +18,11 @@ puzzle_solution(Puzzle) :-
 
 %% valid(+Row)
 %
-valid_row([Head|Tail]) :-
-  Tail ins 1..9, 
-  all_distinct(Tail),
-  valid_head(Head, Tail).
+valid_row([Head|Row]) :-
+  Row ins 1..9, 
+  all_distinct(Row),
+  valid_head(Head, Row),
+  label(Row).
 
 
 %% valid_head(+Head, +Tail)
