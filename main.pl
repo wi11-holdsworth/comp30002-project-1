@@ -28,12 +28,20 @@ valid_row([Head|Tail]) :-
 %
 valid_head(Head, List) :-
   sum(List, #=, Head)
-; foldl(mul, List, 1, Head).
+; product(List, Head).
 
-%% mul
+
+%% product(+List, -Product)
 %
-mul(X, Acc, New) :-
-  New #= Acc * X.
+product(List, Product) :-
+  foldl(times, List, 1, Product).
+
+
+%% times(?Int1, ?Int2, ?Int3)
+%
+% true if Int3 #= Int1 * Int2
+times(Int1, Int2, Int3) :-
+  Int3 #= Int1 * Int2.
 
 
 %% unify_diagonal(+Puzzle)
