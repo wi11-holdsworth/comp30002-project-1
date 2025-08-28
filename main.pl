@@ -1,8 +1,10 @@
-%% Will Holdsworth 1353032
+%% Will Holdsworth 1353032ing
+%
 %
 %  Implements puzzle_solution/1 which solves incomplete proper math puzzles and 
 %  validates complete proper math puzzles.
 %  
+%
 %  A math puzzle is a matrix with a size between 2 and 4. The first row and 
 %  first column of the puzzle are reserved for totals, which should always be 
 %  ground. A total is either the sum or the product of its respective 
@@ -39,7 +41,9 @@ puzzle_solution(Puzzle) :-
   maplist(valid_row, Rows),
   transpose(Puzzle, Transposed_puzzle),
   Transposed_puzzle = [_|Columns],
-  maplist(valid_row, Columns).
+  maplist(valid_row, Columns),
+  Columns = [_|Cells],
+  label_cells(Cells).
 
 
 %% unify_diagonal(+Puzzle: list)
@@ -86,8 +90,7 @@ all_same([Head,Head|Tail]) :-
 valid_row([Total|Vars]) :-
   Vars ins 1..9, 
   all_distinct(Vars),
-  valid_total(Vars, Total),
-  labeling([ff], Vars).
+  valid_total(Vars, Total).
 
 
 %% valid_total(+Vars: list, +Total: integer)
@@ -113,5 +116,16 @@ product(Vars, Product) :-
 
 times(Int1, Int2, Int3) :-
   Int3 #= Int1 * Int2.
+
+
+%% label_cells(+Cells: list)
+%
+%  Holds when all the rows in `Cells` are labeled using clpfd's labeling
+%  predicate. Uses the ff labelling strategy, documented in clpfd man page.
+
+label_cells([]).
+label_cells([Row|Rows]) :-
+  labeling([ff], Row),
+  label_cells(Rows).
 
 
