@@ -65,11 +65,11 @@ main_diagonal([Row|Rows], Column, [D|Ds]) :-
 % 
 % Holds when the variables in the list `Vars` can be unified 
 all_same([Var|Vars]) :-
- all_same(Var, Vars).
+  all_same(Var, Vars).
 
 all_same(Var, [Var]).
 all_same(Var, [Var|Vars]) :-
- all_same(Var, Vars).
+  all_same(Var, Vars).
 
 
 %% valid(+Row)
