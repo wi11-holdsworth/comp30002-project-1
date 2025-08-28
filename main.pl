@@ -3,12 +3,13 @@
 %  Implements puzzle_solution/1 which solves incomplete proper math puzzles and 
 %  validates complete proper math puzzles.
 %  
-%  A math puzzle is a matrix with a size between 2 and 4. The first row and first
-%  column of the puzzle are reserved for totals, which should always be ground. A
-%  total is either the sum or the product of its respective row/column. The top 
-%  and left corner can be ignored. A puzzle can be incomplete, partially 
-%  complete, or complete. An incomplete/partially complete puzzle should have 
-%  "_" where the cell is empty. A proper math puzzle has at most one solution.
+%  A math puzzle is a matrix with a size between 2 and 4. The first row and 
+%  first column of the puzzle are reserved for totals, which should always be 
+%  ground. A total is either the sum or the product of its respective 
+%  row/column. The top and left corner can be ignored. A puzzle can be 
+%  incomplete, partially complete, or complete. An incomplete/partially 
+%  complete puzzle should have "_" where the cell is empty. A proper math 
+%  puzzle has at most one solution.
 %  
 %  We approach puzzle validation via the clpfd library. We apply constraints to 
 %  the puzzle in order of restrictiveness. 
@@ -80,7 +81,7 @@ all_same([Head,Head|Tail]) :-
 %  A row is valid when:
 %    1. All elements except the head are integers from 1 to 9 (inclusive)
 %    2. All elements except the head are distinct 
-%    3. The head of the row is either the sum or the product of the tail of `Row`
+%    3. The head of `Row` is either the sum or the product of the tail of `Row`
 
 valid_row([Total|Vars]) :-
   Vars ins 1..9, 
